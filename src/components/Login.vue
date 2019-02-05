@@ -15,14 +15,33 @@
 <script>
 export default {
   name: 'Login',
-  data() { 
+  data () {
     return {
-      form:{} 
+      form: {}
     }
   },
-  methods:{ 
-    save() {
-      console.log('Hello World')
+  methods: {
+    save () {
+      this.$store.dispatch('login', {
+        requestParams: {'email': this.form.email, 'password': this.form.password}
+      }).then((res) => {
+        if (res.data.status === 'ok') {
+          // console.log('login success')
+          // this.$router.push({
+          //   name: 'dashboard'
+          // })
+          this.$store.dispatch('getArticle',{token:res.data.token}).then((tokenRes) =>{
+          this.$store.commit("SET_ARTICLE", tokenRes);
+          this.$router.push({
+            name: 'dashboard'
+          })
+            // console.log(tokenRes);
+          })
+        }
+      })
+        .catch(() => {
+          console.log('Error Return')
+        })
     }
   }
 }

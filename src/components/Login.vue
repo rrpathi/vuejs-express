@@ -26,17 +26,18 @@ export default {
         requestParams: {'email': this.form.email, 'password': this.form.password}
       }).then((res) => {
         if (res.data.status === 'ok') {
+          localStorage.setItem('jwt_auth', res.data.token);
           // console.log('login success')
-          // this.$router.push({
-          //   name: 'dashboard'
-          // })
-          this.$store.dispatch('getArticle',{token:res.data.token}).then((tokenRes) =>{
-          this.$store.commit("SET_ARTICLE", tokenRes);
           this.$router.push({
             name: 'dashboard'
           })
-            // console.log(tokenRes);
-          })
+          // this.$store.dispatch('getArticle',{token:res.data.token}).then((tokenRes) =>{
+          // this.$store.commit("SET_ARTICLE", tokenRes);
+          // this.$router.push({
+          //   name: 'dashboard'
+          // })
+          //   // console.log(tokenRes);
+          // })
         }
       })
         .catch(() => {

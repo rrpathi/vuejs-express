@@ -7,9 +7,18 @@
 <script>
 export default {
   name: 'Dashboard',
+  created(){
+      const token = localStorage.getItem("jwt_auth"); 
+            this.$store.dispatch('getArticle',{token:token}).then((tokenRes) =>{
+            this.$store.commit("SET_ARTICLE", tokenRes);
+            });
+  },
   computed:{
       getArticle(){
-        return this.$store.getters.getArticle
+            const testing = this.$store.getters.getArticle;;
+            // console.log(this.$store.getters.getArticle);
+           return  testing;
+          
       }
   }
 }

@@ -13,11 +13,19 @@ export default new Vuex.Store({
     },
     getArticle (context, payload) {
       return axios.post('http://localhost:3000/api/getArticle', {'token': payload.token})
+    },
+    deleteArticle (context, payload) {
+      return axios.post('http://localhost:3000/api/deleteArticle', {'articleId': payload.articleId})
+      // return payload
+    },
+    addArticle (context, payload) {
+      return payload
     }
   },
   mutations: {
     SET_ARTICLE (state, payload) {
       // console.log(state)
+      // Get Article
       state.datas = payload.data
       console.log(state.datas)
     }

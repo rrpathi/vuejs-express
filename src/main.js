@@ -12,7 +12,7 @@ import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
 Vue.config.productionTip = false
-
+window.serverURL = 'http://localhost:3000'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

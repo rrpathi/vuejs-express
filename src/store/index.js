@@ -9,7 +9,8 @@ export default new Vuex.Store({
   },
   actions: {
     login (context, payload) {
-      return axios.post('http://localhost:3000/api/login', {'email': payload.requestParams.email, 'password': payload.requestParams.password})
+      // return axios.post('http://localhost:3000/api/login', {'email': payload.requestParams.email, 'password': payload.requestParams.password})
+      return axios.post(`${window.serverURL}/api/login`, {'email': payload.requestParams.email, 'password': payload.requestParams.password})
     },
     getArticle (context, payload) {
       return axios.post('http://localhost:3000/api/getArticle', {'token': payload.token})

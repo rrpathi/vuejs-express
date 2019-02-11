@@ -1,5 +1,6 @@
 <template>
     <div>
+      <button @click="logout">Logout</button>
          <table class="table table-bordered">
     <thead>
       <tr>
@@ -18,7 +19,7 @@
       </tr>
     </tbody>
   </table>
-  <!-- <addarticle :token="token"></addarticle> -->
+  <addarticle :token="token"></addarticle>
     </div>
 </template>
 
@@ -54,6 +55,12 @@ export default {
             });
         });
            
+      },
+      logout(){
+        localStorage.removeItem('jwt_auth');
+        this.$router.push({
+            name: 'login'
+          })
       }
   }
 }
